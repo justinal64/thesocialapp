@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  ScrollView
 } from 'react-native';
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
-    <SampleText>{banner}</SampleText>
+    {/*<SampleText>{banner}</SampleText>*/}
     <Button
       onPress={() => {
         navigation.goBack(null);
@@ -19,24 +20,11 @@ const MyNavScreen = ({ navigation, banner }) => (
   </ScrollView>
 );
 
-const MyHomeScreen = ({ navigation }) => (
-  <View>
-      <MyNavScreen
-        banner="Home Screen"
-        navigation={navigation}
-      />
-      <Text>This is a test</Text>
-  </View>
-);
-
 export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-          {/*<Text>
-              This is the homepage   
-          </Text>*/}
-          <MyNavScreen />
+          <Text>Home Screen From Home.js</Text>
       </View>
     );
   }

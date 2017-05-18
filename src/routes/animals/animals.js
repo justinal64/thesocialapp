@@ -3,16 +3,40 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
-export default class Animals extends Component {
+const MyNavScreen = ({ navigation, banner }) => (
+  <ScrollView>
+    <SampleText>{banner}</SampleText>
+    <Button
+      onPress={() => {
+        navigation.goBack(null);
+      }}
+      title="Go back"
+    />
+  </ScrollView>
+);
+
+const MyHomeScreen = ({ navigation }) => (
+  <View>
+      <MyNavScreen
+        banner="Home Screen"
+        navigation={navigation}
+      />
+      <Text>This is a test</Text>
+  </View>
+);
+
+export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text>
-              This is the animals page  
-          </Text>
+          {/*<Text>
+              This is the homepage   
+          </Text>*/}
+          <MyNavScreen />
       </View>
     );
   }
