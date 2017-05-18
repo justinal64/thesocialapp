@@ -20,6 +20,8 @@ import {
 } from 'react-navigation';
 import SampleText from './SampleText';
 
+import Home from '../routes/home/home';
+
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
     <SampleText>{banner}</SampleText>
@@ -32,12 +34,15 @@ const MyNavScreen = ({ navigation, banner }) => (
   </ScrollView>
 );
 
-const MyHomeScreen = ({ navigation }) => (
-  <MyNavScreen
-    banner="Home Screen"
-    navigation={navigation}
-  />
-);
+/*const MyHomeScreen = ({ navigation }) => (
+  <View>
+      <MyNavScreen
+        banner="Home Screen"
+        navigation={navigation}
+      />
+      <Text>This is a test</Text>
+  </View>
+);*/
 
 const MyNotificationsScreen = ({ navigation }) => (
   <MyNavScreen
@@ -93,7 +98,7 @@ const CustomTabView = ({
 
 const CustomTabRouter = TabRouter({
   Home: {
-    screen: MyHomeScreen,
+    screen: Home,
     path: '',
   },
   Notifications: {
@@ -130,4 +135,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CustomTabs;
+export default (CustomTabs, MyNavScreen);
