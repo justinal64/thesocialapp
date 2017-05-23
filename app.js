@@ -3,7 +3,8 @@ import {
   AppRegistry,
   Text,
   View,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -20,6 +21,7 @@ class ChatScreen extends React.Component {
       <View>
         <Text>Chatting with? {params.user}</Text>
         <Text>Where are you? {params.location}</Text>
+        <Text>What text did you type? {params.text}</Text>        
       </View>
     );
   }
@@ -29,13 +31,22 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
   };
+    constructor(props) {
+    super(props);
+    this.state = { text: 'Useless Placeholder' };
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text>Hello, Chat App!</Text>
+          <Text>Hello, Chat App!</Text>
+                  <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
         <Button
-          onPress={() => navigate('Chat', {user: 'Justin A Leggett', location: "I'm behind you."})}
+          onPress={() => navigate('Chat', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
           title="Chat with Justin"
         />
       </View>
