@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 
 const MyNavScreen = ({ navigation, banner }) => (
@@ -29,14 +30,39 @@ const MyHomeScreen = ({ navigation }) => (
   </View>
 );
 
-export default class Home extends Component {
+export default class Animal extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome',
+  };
+    constructor(props) {
+    super(props);
+    this.state = { text: 'Useless Placeholder',
+                    firstName: 'First Name' };
+    this.state = { firstName: 'First Name' };    
+  }
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-          {/*<Text>
-              This is the homepage   
-          </Text>*/}
-          <MyNavScreen />
+      <View>
+          <Text>Animal.js</Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(firstName) => this.setState({firstName})}
+            value={this.state.firstName}
+          />
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+        <Button
+          onPress={() => navigate('Home', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Home Page"
+        />
+        <Button
+          onPress={() => navigate('Login', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Login Page"
+        />
       </View>
     );
   }
@@ -61,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('KFL', () => Animals);
+AppRegistry.registerComponent('KFL', () => Animal);
