@@ -18,7 +18,7 @@ const Router = StackNavigator({
   Login: { screen: Login }, 
   Home: { screen: Home },
   Animal: { screen: Animal },
-  Community: { screen: Community },  
+  Community: { screen: Community },      
 });
 
 AppRegistry.registerComponent('KFL', () => Router);
