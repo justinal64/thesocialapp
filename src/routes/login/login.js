@@ -36,38 +36,38 @@ const MyNavScreen = ({ navigation, banner }) => (
   }
 }*/
 
-export default class Home extends React.Component {
+export default class Login extends React.Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'TheChurchApp',
   };
     constructor(props) {
     super(props);
     this.state = { text: 'Useless Placeholder',
-                    firstName: 'First Name' };
-    this.state = { firstName: 'First Name' };    
+                    userName: '' ,
+                    password: ''};   
   }
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View>
-          <Text>Home.js</Text>
+      <View style={styles.background}>
+          <Text style={styles.header}>TheChurchApp</Text>
+          <Text style={styles.header}>Put Image Here</Text>
+          <Text style={styles.header}>Welcome</Text>  
+          <Text>Username:</Text>  
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(firstName) => this.setState({firstName})}
-            value={this.state.firstName}
+            onChangeText={(userName) => this.setState({userName})}
+            value={this.state.userName}
           />
+          <Text>Password:</Text>  
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
           />
         <Button
-          onPress={() => navigate('Animal', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-          title="Animal Page"
-        />
-        <Button
-          onPress={() => navigate('Login', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-          title="Login Page"
+          onPress={() => navigate('Community', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Login"
         />
       </View>
     );
@@ -91,6 +91,13 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  header: {
+    textAlign: 'center',
+    fontSize: 40
+  },
+  background: {
+    backgroundColor: 'grey'
+  },
 });
 
-AppRegistry.registerComponent('KFL', () => Home);
+AppRegistry.registerComponent('KFL', () => Login);
