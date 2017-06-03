@@ -45,10 +45,6 @@ export default class Community extends React.Component {
             <Text>City: {user.address.city}</Text>                                         
           </View>
         ))}
-        <Button
-          onPress={() => navigate('Login')}
-          title="Login Page"
-        />   
       </ScrollView>
     );
   }

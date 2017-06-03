@@ -36,7 +36,7 @@ export default class Login extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.background}>
-          <Text style={styles.header}>TheChurchApp</Text>
+          <Text style={styles.header}>TheSocialApp</Text>
           <Text style={styles.header}>Put Image Here</Text>
           <Text style={styles.header}>Welcome</Text>  
           <Text>Username:</Text>  

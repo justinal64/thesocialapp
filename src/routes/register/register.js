@@ -36,15 +36,27 @@ export default class Register extends React.Component {
     return (
       <View>
         <Text>Register page</Text>
-      
+          <View style={styles.background}>
+          <Text style={styles.header}>TheSocialApp</Text>
+          <Text style={styles.header}>Put Image Here</Text>
+          <Text style={styles.header}>Welcome</Text>  
+          <Text>Username:</Text>  
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(userName) => this.setState({userName})}
+            value={this.state.userName}
+          />
+          <Text>Password:</Text>  
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
+          />
         <Button
-          onPress={() => navigate('Home', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-          title="Home Page"
+          onPress={() => navigate('Register', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Register"
         />
-        <Button
-          onPress={() => navigate('Login')}
-          title="Login Page"
-        />   
+      </View>  
       </View>
     );
   }
