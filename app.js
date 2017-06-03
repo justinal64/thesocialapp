@@ -7,18 +7,16 @@ import {
   TextInput
 } from 'react-native';
 
-import { StackNavigator } from 'react-navigation';
-import Home from './src/routes/home/home';
-import Animal from './src/routes/animals/animals';
+import { TabNavigator } from 'react-navigation';
 import Login from './src/routes/login/login';
 import Community from './src/routes/community/community';
+import Register from './src/routes/register/register';
 
-
-const Router = StackNavigator({
+// this page is being used to setup my routes. 
+const Router = TabNavigator({
   Login: { screen: Login }, 
-  Home: { screen: Home },
-  Animal: { screen: Animal },
-  Community: { screen: Community },      
+  Community: { screen: Community }, 
+  Register: { screen: Register },             
 });
 
 AppRegistry.registerComponent('KFL', () => Router);
