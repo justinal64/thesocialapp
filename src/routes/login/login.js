@@ -21,20 +21,6 @@ const MyNavScreen = ({ navigation, banner }) => (
   </ScrollView>
 );
 
-/*export default class Home extends Component {
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={styles.container}>
-          <Text>Home Screen From Home.js</Text>
-          <Button
-            onPress={() => navigate('Chat', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-            title="Chat with Justin"
-          />
-      </View>
-    );
-  }
-}*/
 
 export default class Login extends React.Component {
   static navigationOptions = {
@@ -65,6 +51,10 @@ export default class Login extends React.Component {
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
           />
+        <Button
+          onPress={() => navigate('Register', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Register"
+        />
         <Button
           onPress={() => navigate('Community', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
           title="Login"
