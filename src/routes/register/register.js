@@ -15,7 +15,7 @@ import axios from 'axios';
 
 export default class Register extends React.Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'Register',
   };
     constructor(props) {
     super(props);

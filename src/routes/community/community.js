@@ -15,7 +15,7 @@ import axios from 'axios';
 
 export default class Community extends React.Component {
   static navigationOptions = {
-    title: 'Welcome',
+    tabBarLabel: 'Community',
   };
     constructor(props) {
     super(props);
@@ -26,7 +26,6 @@ export default class Community extends React.Component {
   componentDidMount() {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(res => {
-        // const posts = res.data.data.children.map(obj => obj.data);
         this.setState({ userData: res.data });
         console.log(this.state.userData);
       });
@@ -37,19 +36,15 @@ export default class Community extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
-          { this.state.userData.map((user, key) => (
-            <View key={user.id}>
-              <Text>Name: {user.name}</Text>
-              <Text>Email: {user.email}</Text>
-              <Text>Username: {user.username}</Text>
-              <Text>Phone#: {user.phone}</Text>              
-            </View>
-          ))}
-
-        <Button
-          onPress={() => navigate('Home', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-          title="Home Page"
-        />
+        { this.state.userData.map((user, key) => (
+          <View key={user.id}>
+            <Text>Name: {user.name}</Text>
+            <Text>Email: {user.email}</Text>
+            <Text>Username: {user.username}</Text>
+            <Text>Phone#: {user.phone}</Text> 
+            <Text>City: {user.address.city}</Text>                                         
+          </View>
+        ))}
         <Button
           onPress={() => navigate('Login')}
           title="Login Page"

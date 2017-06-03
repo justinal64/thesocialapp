@@ -24,7 +24,7 @@ const MyNavScreen = ({ navigation, banner }) => (
 
 export default class Login extends React.Component {
   static navigationOptions = {
-    title: 'TheChurchApp',
+    title: 'Login',
   };
     constructor(props) {
     super(props);
