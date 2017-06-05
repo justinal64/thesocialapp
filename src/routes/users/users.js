@@ -9,7 +9,6 @@ import {
   TextInput
 } from 'react-native';
 
-import data from '../../components/data/data.json';
 import axios from 'axios';
 
 
@@ -17,13 +16,35 @@ export default class Users extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Users',
   };
+    constructor(props) {
+    super(props);
+    this.state = { jsonData: [],
+                    userData: null}; 
+  }
+  
+  componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        this.setState({ userData: res.data });
+        console.log(this.state.userData);
+      });
+  }
   
   render() {
+    if(this.state.userData === null) return null;
     const { navigate } = this.props.navigation;
     return (
-      <View>
-          <Text>Users Page</Text>
-      </View>
+      <ScrollView>
+        { this.state.userData.map((user, key) => (
+          <View key={user.id}>
+            <Text>Name: {user.name}</Text>
+            <Text>Email: {user.email}</Text>
+            <Text>Username: {user.username}</Text>
+            <Text>Phone#: {user.phone}</Text> 
+            <Text>City: {user.address.city}</Text>                                         
+          </View>
+        ))}
+      </ScrollView>
     );
   }
 }
