@@ -52,7 +52,7 @@ export default class Login extends React.Component {
             value={this.state.password}
           />
         <Button
-          onPress={() => navigate('Register', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          onPress={() => navigate('Register')}
           title="Register"
         />
         <Button

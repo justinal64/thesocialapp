@@ -9,7 +9,6 @@ import {
   TextInput
 } from 'react-native';
 
-import data from '../../components/data/data.json';
 import axios from 'axios';
 
 
@@ -19,7 +18,7 @@ export default class Community extends React.Component {
   };
     constructor(props) {
     super(props);
-    this.state = { jsonData: data,
+    this.state = { jsonData: [],
                     userData: null}; 
   }
   

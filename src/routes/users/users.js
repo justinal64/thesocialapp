@@ -6,24 +6,44 @@ import {
   View,
   Button,
   ScrollView,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 
-import data from '../../components/data/data.json';
 import axios from 'axios';
-
 
 export default class Users extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Users',
   };
+    constructor(props) {
+    super(props);
+    this.state = { jsonData: [],
+                    userData: null}; 
+  }
+  
+  componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        this.setState({ userData: res.data });
+        console.log(this.state.userData);
+      });
+  }
   
   render() {
+    if(this.state.userData === null) return null;
     const { navigate } = this.props.navigation;
     return (
-      <View>
-          <Text>Users Page</Text>
-      </View>
+      <ScrollView>
+        { this.state.userData.map((user, key) => (
+          <View key={user.id}>
+            <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
+            <Text>Name: {user.name}</Text>
+            <Text>Username: {user.username}</Text>
+            <Text>Phone#: {user.phone}</Text>                                         
+          </View>
+        ))}
+      </ScrollView>
     );
   }
 }
@@ -45,6 +65,9 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  img: {
+    
+  }
 });
 
 AppRegistry.registerComponent('KFL', () => Users);
