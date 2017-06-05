@@ -7,7 +7,7 @@ import {
   TextInput
 } from 'react-native';
 
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import Login from './src/routes/login/login';
 import Community from './src/routes/community/community';
 import Register from './src/routes/register/register';
@@ -17,8 +17,9 @@ import Users from './src/routes/users/users';
 const Router = TabNavigator({
   Login: { screen: Login }, 
   Community: { screen: Community }, 
-  Register: { screen: Register }, 
   Users: { screen: Users },                          
+  Register: { screen: Register, navigationOptions: { showLabel: false}, visible: false }, 
 });
+
 
 AppRegistry.registerComponent('KFL', () => Router);

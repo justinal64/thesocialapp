@@ -6,11 +6,11 @@ import {
   View,
   Button,
   ScrollView,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 
 import axios from 'axios';
-
 
 export default class Users extends React.Component {
   static navigationOptions = {
@@ -37,11 +37,10 @@ export default class Users extends React.Component {
       <ScrollView>
         { this.state.userData.map((user, key) => (
           <View key={user.id}>
+            <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
             <Text>Name: {user.name}</Text>
-            <Text>Email: {user.email}</Text>
             <Text>Username: {user.username}</Text>
-            <Text>Phone#: {user.phone}</Text> 
-            <Text>City: {user.address.city}</Text>                                         
+            <Text>Phone#: {user.phone}</Text>                                         
           </View>
         ))}
       </ScrollView>
@@ -66,6 +65,9 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  img: {
+    
+  }
 });
 
 AppRegistry.registerComponent('KFL', () => Users);
