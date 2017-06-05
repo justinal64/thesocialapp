@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Linking } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -10,7 +10,7 @@ import {
 import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text, Thumbnail } from 'native-base';
 import styles from './styles';
 import axios from 'axios';
-import data from '../../components/data/data';
+
 
 export default class Community extends React.Component {
   static navigationOptions = {
@@ -22,54 +22,42 @@ export default class Community extends React.Component {
                     userData: null}; 
   }
   
+  componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        this.setState({ userData: res.data });
+        console.log(this.state.userData);
+      });
+  }
+  
   render() {
     if(this.state.userData === null) return null;
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
-          {/*{ this.state.userData.map((user, key) => (
-            <View key={user.id}>
-              <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
-              <Text>Name: {user.name}</Text>
-              <Text>Email: {user.email}</Text>
-              <Text>Username: {user.username}</Text>
-              <Text>Phone#: {user.phone}</Text> 
-              <Text>City: {user.address.city}</Text>                                         
-            </View>
-          ))}*/}
-          
         <Container style={styles.container}>
           <Header>
             <Title>Community Activity</Title>
           </Header>
-
           <Content>
             <List>
+          { this.state.userData.map((user, key) => (
+            <View key={user.id}>
+              {/*<Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
+              <Text>Name: {user.name}</Text>
+              <Text>Email: {user.email}</Text>
+              <Text>Username: {user.username}</Text>
+              <Text>Phone#: {user.phone}</Text> 
+              <Text>City: {user.address.city}</Text>                                         */}
+            
               <ListItem>
                 <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>Justin Smith</Text>
-                <Text note>Check out this great article. </Text>
+                <Text>{user.username} Check out my website it is a really cool website</Text>
+                <Text style={{color: 'blue'}} onPress={() => Linking.openURL('https://google.com')}> {user.website} </Text>
               </ListItem>
-              <ListItem>
-                <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>Katie Smith</Text>
-                <Text note>One needs courage to be happy and smiling all time . . </Text>
-              </ListItem>
-              <ListItem>
-                <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>Kallie Smith</Text>
-                <Text note>Live a life style that matchs your vision</Text>
-              </ListItem>
-              <ListItem>
-                <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>Zoey Smith</Text>
-                <Text note>Failure is temporary, giving up makes it permanent</Text>
-              </ListItem>
-              <ListItem>
-                <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>Pax Smith</Text>
-                <Text note>The biggest risk is a missed opportunity !!</Text>
-              </ListItem>
+              </View>
+          ))}
+          
             </List>
           </Content>
         </Container>
