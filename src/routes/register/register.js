@@ -9,30 +9,22 @@ import {
   TextInput
 } from 'react-native';
 
-import data from '../../components/data/data.json';
 import axios from 'axios';
-
 
 export default class Register extends React.Component {
   static navigationOptions = {
     title: 'Register',
+    showLabel: false, 
+    visible: false 
   };
     constructor(props) {
     super(props);
-    this.state = { jsonData: data,
+    this.state = { jsonData: [],
                     userData: null}; 
   }
   
-  // componentDidMount() {
-  //       axios.get(`https://jsonplaceholder.typicode.com/users`)
-  //     .then(res => {
-  //       // const posts = res.data.data.children.map(obj => obj.data);
-  //       this.setState({ userData: res.data });
-  //       console.log(this.state.userData);
-  //     });
-  // }
-  
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View>
         <Text>Register page</Text>
@@ -53,7 +45,7 @@ export default class Register extends React.Component {
             value={this.state.password}
           />
         <Button
-          onPress={() => navigate('Register', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          onPress={() => navigate('Community', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
           title="Register"
         />
       </View>  

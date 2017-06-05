@@ -7,18 +7,19 @@ import {
   TextInput
 } from 'react-native';
 
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator} from 'react-navigation';
 import Login from './src/routes/login/login';
 import Community from './src/routes/community/community';
 import Register from './src/routes/register/register';
 import Users from './src/routes/users/users';
-
+import Profile from './src/routes/profile/profile';
 // this page is being used to setup my routes. 
 const Router = TabNavigator({
   Login: { screen: Login }, 
   Community: { screen: Community }, 
-  Users: { screen: Users },                          
-  Register: { screen: Register, navigationOptions: { showLabel: false}, visible: false }, 
+  Users: { screen: Users },  
+  Profile: { screen: Profile },                         
+  Register: { screen: Register, navigationOptions: { showLabel: false, visible: false }}, 
 });
 
 

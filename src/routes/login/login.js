@@ -8,6 +8,8 @@ import {
   ScrollView,
   TextInput
 } from 'react-native';
+import { TabNavigator} from 'react-navigation';
+
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
