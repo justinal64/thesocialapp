@@ -10,7 +10,7 @@ import {
 import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text, Thumbnail } from 'native-base';
 import styles from './styles';
 import axios from 'axios';
-
+import data from '../../components/data/data';
 
 export default class Community extends React.Component {
   static navigationOptions = {
@@ -20,14 +20,6 @@ export default class Community extends React.Component {
     super(props);
     this.state = { jsonData: [],
                     userData: null}; 
-  }
-  
-  componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        this.setState({ userData: res.data });
-        console.log(this.state.userData);
-      });
   }
   
   render() {
@@ -45,7 +37,6 @@ export default class Community extends React.Component {
               <Text>City: {user.address.city}</Text>                                         
             </View>
           ))}*/}
-          
           
         <Container style={styles.container}>
           <Header>
