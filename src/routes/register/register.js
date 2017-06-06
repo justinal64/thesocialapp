@@ -14,12 +14,16 @@ export default class Register extends React.Component {
   };
     constructor(props) {
     super(props);
-    this.state = { jsonData: [],
-                    userData: null}; 
+      this.state = { username: '' ,
+                  password: ''};  
   }
   
   render() {
     const { navigate } = this.props.navigation;
+    let auth = () => {
+      console.log(this.state.username);
+      console.log(this.state.password);      
+    }
     return (
             <Container>
               <Header>
@@ -29,14 +33,14 @@ export default class Register extends React.Component {
                 <Form>
                     <Item floatingLabel>
                         <Label>Username</Label>
-                        <Input />
+                        <Input onChangeText = {(username) => this.setState({username})}/>
                     </Item>
                     <Item floatingLabel last>
                         <Label>Password</Label>
-                        <Input />
+                        <Input onChangeText = {(password) => this.setState({password})}/>
                     </Item>
                 </Form>
-                <Button rounded>
+                <Button rounded onPress={() => auth()}>
                   <Text>Register</Text>
                 </Button>
               </Content>

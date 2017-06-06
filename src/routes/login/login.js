@@ -32,7 +32,7 @@ export default class Login extends React.Component {
                   password: ''};   
   }
   render() {
-    let users = { }
+
     const { navigate } = this.props.navigation;
     let auth = () => {
       console.log(this.state.username);
