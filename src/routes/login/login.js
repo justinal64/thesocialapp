@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  TextInput
 } from 'react-native';
+import { Container, Content, Form, Item, Input,Label, Header, Button, Text} from 'native-base';
 import { TabNavigator} from 'react-navigation';
 
 
@@ -28,40 +24,45 @@ export default class Login extends React.Component {
   static navigationOptions = {
     title: 'Login',
   };
-    constructor(props) {
-    super(props);
-    this.state = { text: 'Useless Placeholder',
-                    userName: '' ,
-                    password: ''};   
+  
+  constructor(props) {
+  super(props);
+  this.state = { text: 'Useless Placeholder',
+                  username: '' ,
+                  password: ''};   
   }
   render() {
+    let users = { }
     const { navigate } = this.props.navigation;
+    let auth = () => {
+      console.log(this.state.username);
+      console.log(this.state.password);      
+    }
     return (
-      <View style={styles.background}>
-          <Text style={styles.header}>TheSocialApp</Text>
-          <Text style={styles.header}>Put Image Here</Text>
-          <Text style={styles.header}>Welcome</Text>  
-          <Text>Username:</Text>  
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(userName) => this.setState({userName})}
-            value={this.state.userName}
-          />
-          <Text>Password:</Text>  
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(password) => this.setState({password})}
-            value={this.state.password}
-          />
-        <Button
-          onPress={() => navigate('Register')}
-          title="Register"
-        />
-        <Button
-          onPress={() => navigate('Community', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
-          title="Login"
-        />
-      </View>
+            <Container>
+              <Header>
+                <Text>Register</Text>
+              </Header>
+              <Content>
+                <Form>
+                    <Item floatingLabel>
+                        <Label>Username</Label>
+                        <Input onChangeText = {(username) => this.setState({username})}/>
+                    </Item>
+                    <Item floatingLabel last>
+                        <Label>Password</Label>
+                        <Input onChangeText = {(password) => this.setState({password})}/>
+                    </Item>
+                </Form>
+                <Button rounded onPress={() => auth()}> 
+                  <Text>Login</Text>
+                </Button>
+                <Button rounded onPress={() => navigate('Register')}>
+                  <Text>Register</Text>
+                </Button>
+              </Content>
+          </Container>
+// onPress={() => navigate('Community')}
     );
   }
 }
