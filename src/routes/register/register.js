@@ -33,6 +33,7 @@ export default class Register extends React.Component {
           <Text style={styles.header}>Put Image Here</Text>
           <Text style={styles.header}>Welcome</Text>  
           <Text>Username:</Text>  
+          
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(userName) => this.setState({userName})}
