@@ -5,11 +5,12 @@ import {
   View,
   ScrollView,
   TextInput,
-  Image
+  Image,
+  Container,
+  Text
 } from 'react-native';
-import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text, Thumbnail } from 'native-base';
-import styles from './styles';
 import axios from 'axios';
+
 
 
 export default class Community extends React.Component {
@@ -35,12 +36,6 @@ export default class Community extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
-        <Container style={styles.container}>
-          <Header>
-            <Title>Community Activity</Title>
-          </Header>
-          <Content>
-            <List>
           { this.state.userData.map((user, key) => (
             <View key={user.id}>
               {/*<Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
@@ -48,23 +43,20 @@ export default class Community extends React.Component {
               <Text>Email: {user.email}</Text>
               <Text>Username: {user.username}</Text>
               <Text>Phone#: {user.phone}</Text> 
-              <Text>City: {user.address.city}</Text>                                         */}
-            
-              <ListItem>
-                <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
+              <Text>City: {user.address.city}</Text>   
+                                                    */}
+                <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
                 <Text>{user.username} Check out my website it is a really cool website</Text>
                 <Text style={{color: 'blue'}} onPress={() => Linking.openURL('https://google.com')}> {user.website} </Text>
-              </ListItem>
               </View>
           ))}
           
-            </List>
-          </Content>
-        </Container>
       </ScrollView>
     );
   }
 }
+
+
 
 AppRegistry.registerComponent('KFL', () => Community);
 
