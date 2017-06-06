@@ -5,12 +5,14 @@ import {
   View,
   ScrollView,
   TextInput,
-  Image
+  Image,
+  Container,
+  Header,
+  Title,
+  Content
 } from 'react-native';
-import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text, Thumbnail } from 'native-base';
 import styles from './styles';
 import axios from 'axios';
-
 
 export default class Community extends React.Component {
   static navigationOptions = {
@@ -18,9 +20,8 @@ export default class Community extends React.Component {
   };
     constructor(props) {
     super(props);
-    this.state = { jsonData: [],
-                    userData: null}; 
-  }
+    this.state = { userData: null}; 
+}
   
   componentDidMount() {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -35,11 +36,9 @@ export default class Community extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
-        <Container style={styles.container}>
           <Header>
             <Title>Community Activity</Title>
           </Header>
-          <Content>
             <List>
           { this.state.userData.map((user, key) => (
             <View key={user.id}>
@@ -52,15 +51,13 @@ export default class Community extends React.Component {
             
               <ListItem>
                 <Thumbnail square size={80} source={require('../../imgs/user.jpg')} />
-                <Text>{user.username} Check out my website it is a really cool website</Text>
-                <Text style={{color: 'blue'}} onPress={() => Linking.openURL('https://google.com')}> {user.website} </Text>
+                <Text>{user.username}</Text>
+                <Text note>Check out my website it is a really cool {user.website} </Text>
               </ListItem>
               </View>
           ))}
           
             </List>
-          </Content>
-        </Container>
       </ScrollView>
     );
   }

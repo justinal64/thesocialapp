@@ -6,15 +6,16 @@ import {
   View,
   Button,
   ScrollView,
-  TextInput,
-  Image
+  TextInput
 } from 'react-native';
 
 import axios from 'axios';
 
 export default class Users extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Users',
+    title: 'Register',
+    showLabel: false, 
+    visible: false 
   };
     constructor(props) {
     super(props);
@@ -22,28 +23,33 @@ export default class Users extends React.Component {
                     userData: null}; 
   }
   
-  componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        this.setState({ userData: res.data });
-        console.log(this.state.userData);
-      });
-  }
-  
   render() {
-    if(this.state.userData === null) return null;
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView>
-        { this.state.userData.map((user, key) => (
-          <View key={user.id}>
-            <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
-            <Text>Name: {user.name}</Text>
-            <Text>Username: {user.username}</Text>
-            <Text>Phone#: {user.phone}</Text>                                         
-          </View>
-        ))}
-      </ScrollView>
+      <View>
+        <Text>Register page</Text>
+          <View style={styles.background}>
+          <Text style={styles.header}>TheSocialApp</Text>
+          <Text style={styles.header}>Put Image Here</Text>
+          <Text style={styles.header}>Welcome</Text>  
+          <Text>Username:</Text>  
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(userName) => this.setState({userName})}
+            value={this.state.userName}
+          />
+          <Text>Password:</Text>  
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
+          />
+        <Button
+          onPress={() => navigate('Community', {user: 'Justin A Leggett', location: "I'm behind you.", text: this.state.text})}
+          title="Register"
+        />
+      </View>  
+      </View>
     );
   }
 }
@@ -65,9 +71,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  img: {
-    
-  }
 });
 
 AppRegistry.registerComponent('KFL', () => Users);
