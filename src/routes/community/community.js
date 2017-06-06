@@ -41,7 +41,7 @@ export default class Community extends React.Component {
                         <Body>
                             <Text>{user.username}</Text>
                             <Text note>{user.company.name}</Text>
-                            <Text>11h ago</Text>
+                            <Text>11H ago</Text>
                         </Body>
                       </Left>
                     </CardItem>
