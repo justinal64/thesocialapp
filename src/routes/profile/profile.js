@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  TextInput,
   Image
 } from 'react-native';
-
+import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import axios from 'axios';
 
 
@@ -35,19 +30,32 @@ export default class Profile extends React.Component {
     if(this.state.userData === null) return null;
     const { navigate } = this.props.navigation;
     return (
-      <View>
-        
-        <View key={this.state.userData[0].id}>
-            <Image source={require('../../imgs/user.jpg')} style={{width: 50, height: 50}}/>
-            <Text>Name: {this.state.userData[0].name}</Text>
-            <Text>Username: {this.state.userData[0].username}</Text>            
-            <Text>Email: {this.state.userData[0].email}</Text>    
-            <Text>Phone: {this.state.userData[0].phone}</Text>                    
-        </View>
-        <View>
-            <Text>Activity</Text>
-        </View>
-      </View>
+            <Container>
+              <Content>
+                  <Card style={{ flex: 0 }}>
+                      <CardItem>
+                          <Left>
+                              <Thumbnail source={require('../../imgs/user.jpg')} />
+                              <Body>
+                                  <Text>Justin Leggett</Text>
+                                  <Text note>Joined April 15, 2016</Text>
+                              </Body>
+                          </Left>
+                      </CardItem>
+                      <CardItem>
+                          <Body>
+                              <Image style={{ resizeMode: 'cover' }} source={require('../../imgs/user.jpg')} />
+                              <Text>
+                                  I write code and stuff....
+                              </Text>
+                              {/*<Button transparent textStyle={{color: '#87838B'}}>
+                                  <Text>1,926 stars</Text>
+                              </Button>*/}
+                          </Body>
+                      </CardItem>
+                  </Card>
+              </Content>
+          </Container>
     );
   }
 }
