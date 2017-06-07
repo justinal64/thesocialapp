@@ -3,7 +3,7 @@ import {
   AppRegistry,
   Image,
 } from 'react-native';
-import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Header } from 'native-base';
+import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Header, Item, Input } from 'native-base';
 import axios from 'axios';
 
 
@@ -17,10 +17,11 @@ export default class Notes extends React.Component {
   }
   
   componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
+        axios.get(`http://localhost:54080/api/posts`)
       .then(res => {
         this.setState({ userData: res.data });
         console.log(this.state.userData);
+        console.log(this.state.userData[0]._id)
       });
   }
   
@@ -33,15 +34,18 @@ export default class Notes extends React.Component {
                   <Text>Notes</Text>
                 </Header>
                 <Content>
+                    <Item underline>
+                        <Input placeholder='Add Note' />
+                    </Item>
                     { this.state.userData.map((user, key) => (
-                  <Card key={user.id}>
+                  <Card key={user._id.timestamp}>
                     <CardItem>
                       <Left>
                         <Thumbnail source={require('../../imgs/user.jpg')} />
                         <Body>
                             <Text>{user.username}</Text>
                             <Text note>{user.company.name}</Text>
-                            <Text>11H ago</Text>
+                            <Text>11h ago</Text>
                         </Body>
                       </Left>
                     </CardItem>
@@ -49,7 +53,7 @@ export default class Notes extends React.Component {
                       <Image/>
                     </CardItem>
                     <CardItem>
-                        <Text>Today I did this....</Text>
+                        <Text>{user.posts}</Text>
                     </CardItem>
                    </Card>                                   
             ))}
