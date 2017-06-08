@@ -55,10 +55,10 @@ export default class Login extends React.Component {
                     </Item>
                 </Form>
                 <Button rounded onPress={() => auth()}> 
-                  <Text>Login</Text>
+                  <Text>Sign In</Text>
                 </Button>
                 <Button rounded onPress={() => navigate('Register')}>
-                  <Text>Register</Text>
+                  <Text>Sign Up</Text>
                 </Button>
               </Content>
           </Container>

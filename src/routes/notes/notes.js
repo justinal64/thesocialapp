@@ -16,12 +16,21 @@ export default class Notes extends React.Component {
     this.state = { userData: null}; 
   }
   
+// http://api.mongodb.com/csharp/current/html/Properties_T_MongoDB_Bson_ObjectId.htm
+// api.mongodb.com
+// Represents an ObjectId (see also BsonObjectId).
+// looks like .net serializes it differently
+// so it will come across the wire with those properties
+// can try GetHashCode() or ToString() ?
+// ToString should generate the Hexadecimal string (edited)
+  
   componentDidMount() {
-        axios.get(`http://localhost:54080/api/posts`)
+        axios.get(`http://localhost:5000/api/request`)
       .then(res => {
         this.setState({ userData: res.data });
-        console.log(this.state.userData);
-        console.log(this.state.userData[0]._id)
+        console.log(res);
+        console.log(this.state.userData[0]._id.GetHashCode());
+        console.log(this.state.userData[0].ObjectId());
       });
   }
   
@@ -38,7 +47,7 @@ export default class Notes extends React.Component {
                         <Input placeholder='Add Note' />
                     </Item>
                     { this.state.userData.map((user, key) => (
-                  <Card key={user._id.timestamp}>
+                  <Card key={user.username}>
                     <CardItem>
                       <Left>
                         <Thumbnail source={require('../../imgs/user.jpg')} />

@@ -41,7 +41,7 @@ export default class Register extends React.Component {
                     </Item>
                 </Form>
                 <Button rounded onPress={() => auth()}>
-                  <Text>Register</Text>
+                  <Text>Sign Up</Text>
                 </Button>
               </Content>
           </Container>
