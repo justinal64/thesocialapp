@@ -59,9 +59,6 @@ export default class Login extends React.Component {
     }
     return (
             <Container>
-              <Header>
-                <Text>Register</Text>
-              </Header>
               <Content>
                 <Form>
                     <Item floatingLabel>
