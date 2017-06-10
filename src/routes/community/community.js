@@ -5,7 +5,8 @@ import {
 } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Header } from 'native-base';
 import axios from 'axios';
-
+import global from '../../components/global/global';
+import Login from '../login/login';
 
 export default class Community extends React.Component {
   static navigationOptions = {
@@ -13,19 +14,20 @@ export default class Community extends React.Component {
   };
     constructor(props) {
     super(props);
-    this.state = { userData: null}; 
+    this.state = { userData: null, 
+                    isLoggedIn: false}; 
   }
   
   componentDidMount() {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(res => {
         this.setState({ userData: res.data });
-        console.log(this.state.userData);
       });
   }
   
   render() {
     if(this.state.userData === null) return null;
+    if(global.ACCCESS_TOKEN !== '') return this.state.isLoggedIn = true;
     const { navigate } = this.props.navigation;
     return (
               <Container>

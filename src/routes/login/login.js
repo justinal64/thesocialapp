@@ -5,11 +5,12 @@ import {
 } from 'react-native';
 import { Container, Content, Form, Item, Input,Label, Header, Button, Text} from 'native-base';
 import { TabNavigator} from 'react-navigation';
-
+import uuid from 'uuid';
+import axios from 'axios';
+import global from '../../components/global/global';
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
-    {/*<SampleText>{banner}</SampleText>*/}
     <Button
       onPress={() => {
         navigation.goBack(null);
@@ -36,7 +37,25 @@ export default class Login extends React.Component {
     const { navigate } = this.props.navigation;
     let auth = () => {
       console.log(this.state.username);
-      console.log(this.state.password);      
+      console.log(this.state.password);  
+      console.log(uuid.v4()); 
+      axios.post('http://localhost:3001/users', {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(function (response) {
+        console.log(response);
+        global.ID_TOKEN = response.data.id_token;
+        global.ACCCESS_TOKEN = response.data.access_token;
+        console.log("global.ID_Token = ", global.ID_TOKEN);
+        console.log("global.ACCESS_TOKEN = ", global.ACCCESS_TOKEN);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
+      
+         
     }
     return (
             <Container>
@@ -62,7 +81,6 @@ export default class Login extends React.Component {
                 </Button>
               </Content>
           </Container>
-// onPress={() => navigate('Community')}
     );
   }
 }

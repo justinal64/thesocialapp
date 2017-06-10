@@ -14,6 +14,8 @@ import Register from './src/routes/register/register';
 import Users from './src/routes/users/users';
 import Profile from './src/routes/profile/profile';
 import Notes from './src/routes/notes/notes';
+// import global from './';
+
 // this page is being used to setup my routes. 
 const Router = TabNavigator({
   Login: { screen: Login }, 

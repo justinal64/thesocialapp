@@ -28,9 +28,7 @@ export default class Notes extends React.Component {
         axios.get(`http://localhost:5000/api/request`)
       .then(res => {
         this.setState({ userData: res.data });
-        console.log(res);
-        console.log(this.state.userData[0]._id.GetHashCode());
-        console.log(this.state.userData[0].ObjectId());
+        console.log("this.state.userData = " , this.state.userData);
       });
   }
   
@@ -47,7 +45,7 @@ export default class Notes extends React.Component {
                         <Input placeholder='Add Note' />
                     </Item>
                     { this.state.userData.map((user, key) => (
-                  <Card key={user.username}>
+                  <Card key={user._id.increment}>
                     <CardItem>
                       <Left>
                         <Thumbnail source={require('../../imgs/user.jpg')} />

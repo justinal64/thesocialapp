@@ -22,7 +22,6 @@ export default class Profile extends React.Component {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(res => {
         this.setState({ userData: res.data });
-        console.log(this.state.userData);
       });
   }
     // Display the single user that is signed on
