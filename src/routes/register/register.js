@@ -15,7 +15,8 @@ export default class Register extends React.Component {
     constructor(props) {
     super(props);
       this.state = { username: '' ,
-                  password: ''};  
+                  password: '',
+                  cpassword: ''};  
   }
   
   render() {
@@ -36,8 +37,12 @@ export default class Register extends React.Component {
                         <Label>Password</Label>
                         <Input onChangeText = {(password) => this.setState({password})}/>
                     </Item>
+                    <Item floatingLabel last>
+                        <Label>Confirm Password</Label>
+                        <Input onChangeText = {(password) => this.setState({cpassword})}/>
+                    </Item>
                 </Form>
-                <Button rounded onPress={() => auth()}>
+                <Button rounded onPress={() => navigation.navigate("SignIn")}>
                   <Text>Sign Up</Text>
                 </Button>
               </Content>
